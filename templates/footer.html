@@ -1,0 +1,22 @@
+<!-- End Document
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<div class="four columns" style="width: 100%; display: flex; justify-content: center;">
+
+    <a href="https://github.com/DSU-DefSec/questions" style="text-decoration: none;">questions <span style="color: black">is FOSS.</span></a>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    {{ if .user }}
+    <a href="/logout" style="text-decoration: none"><div><b>Logout</b></div></a>
+    {{ else }}
+    <a href="/login" style="text-decoration: none"><div>Login</div></a>
+    {{ end }}
+</div>
+
+</div>
+<script>
+    feather.replace()
+</script>
+</body>
+</html>
