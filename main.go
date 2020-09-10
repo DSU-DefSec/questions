@@ -10,31 +10,29 @@ import (
 )
 
 var (
-	questions = []question{}
-	eventTitle string
+	questions     = []question{}
+	eventTitle    string
 	adminUsername string
 	adminPassword string
 )
 
 type question struct {
-    Time time.Time
-	Ip string
-    Text string
+	Time time.Time
+	Ip   string
+	Text string
 }
 
 func main() {
+	if len(os.Args) != 4 {
+		fmt.Println("Usage:", os.Args[0], "event username password")
+		os.Exit(1)
+	}
 
+	eventTitle = os.Args[1]
+	adminUsername = os.Args[2]
+	adminPassword = os.Args[3]
 
-	if len(os.Args) < 4 || len(os.Args) > 4 {
-    	fmt.Println("Usage:", os.Args[0], "event username password")
-    	os.Exit(1)
-    }
-
-    eventTitle = os.Args[1]
-    adminUsername = os.Args[2]
-    adminPassword = os.Args[3]
-
- 	// Initialize Gin router
+	// Initialize Gin router
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
@@ -76,7 +74,7 @@ func submitQuestion(c *gin.Context) {
 func pageData(c *gin.Context, title string, ginMap gin.H) gin.H {
 	newGinMap := gin.H{}
 	if len(getUser(c)) > 0 {
-	    newGinMap["user"] = getUser(c)
+		newGinMap["user"] = getUser(c)
 	}
 	newGinMap["event"] = eventTitle
 	for key, value := range ginMap {
